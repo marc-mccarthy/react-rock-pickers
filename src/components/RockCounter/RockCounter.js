@@ -6,9 +6,9 @@ function RockCounter(props) {
     const [overFifty, setOverFifty] = useState('');
 
     const increaseCount = () => {
-        if (count > 49) {
-            setCount(count + 1);
+        if (count >= 50) {
             setOverFifty('Done');
+            setCount(count + 1);
             props.groupTotal(1);
         } else {
             setCount(count + 1);
@@ -17,13 +17,22 @@ function RockCounter(props) {
     }
 
     const decreaseCount = () => {
-        count <  1 ? alert(`Can't go below 0`) : setCount(count - 1);
-        props.groupTotal(-1);
+        if (count < 1) {
+            alert(`Can't go below 0`);
+        } else if (count < 51) {
+            setOverFifty('');
+            setCount(count - 1);
+            props.groupTotal(-1);
+        } else {
+            setCount(count - 1);
+            props.groupTotal(-1);
+        }
     }
 
     const resetCount = () => {
         setCount(0);
         setOverFifty('');
+        props.groupTotal(-count);
     }
 
     return (
