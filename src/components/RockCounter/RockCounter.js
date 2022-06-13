@@ -10,9 +10,11 @@ function RockCounter(props) {
             setOverFifty('Done');
             setCount(count + 1);
             props.groupTotal(1);
+            props.setWhoPicked(props.name);
         } else {
             setCount(count + 1);
             props.groupTotal(1);
+            props.setWhoPicked(props.name);
         }
     }
 
@@ -23,9 +25,11 @@ function RockCounter(props) {
             setOverFifty('');
             setCount(count - 1);
             props.groupTotal(-1);
+            props.setWhoPicked(props.name);
         } else {
             setCount(count - 1);
             props.groupTotal(-1);
+            props.setWhoPicked(props.name);
         }
     }
 
